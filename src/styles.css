@@ -72,15 +72,9 @@ h1 {
   }
 }
 
-.text-uppercase {
-  text-transform: uppercase;
-}
-
 .game-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--game-spacing);
   padding: var(--game-spacing) 32px;
   margin: 0 auto;
   min-width: 250px;
@@ -91,7 +85,7 @@ h1 {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .guess {
@@ -153,16 +147,21 @@ h1 {
 
 .guess-input-wrapper label {
   font-size: 1.25rem;
+  margin-top: 2rem;
 }
 
 .guess-input-wrapper input {
-  display: block;
-  width: 100%;
-  font-size: 2rem;
-  border: 2px solid var(--color-gray-300);
-  border-radius: 4px;
-  padding: 8px 16px;
-  outline-offset: 4px;
+  all: unset;
+  background: linear-gradient(90deg, #eee calc(1.25 * 2.9ch), transparent 0) 0 0 /
+    calc(2.9ch + 1ch) 100%;
+  clip-path: inset(0% calc(2.9ch / 2) 0% 0%);
+  font-family: monospace;
+  font-size: 2.9em;
+  inline-size: calc(5 * (2.9ch + 1ch));
+  letter-spacing: 2.9ch;
+  padding-block: 0.6ch;
+  padding-inline-start: calc(((3.2ch - 1ch) / 2) * 1.25);
+  text-transform: uppercase;
 }
 
 .banner {

@@ -20,7 +20,6 @@ function GuessInput({ handleProcessSubmit, isAllowedToGuess }) {
       <label htmlFor="guess-input">Enter guess:</label>
       <input
         disabled={!isAllowedToGuess}
-        className="text-uppercase"
         onChange={(event) => {
           setGuessInput(event.target.value);
         }}
