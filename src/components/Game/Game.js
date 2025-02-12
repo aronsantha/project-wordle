@@ -1,24 +1,35 @@
 import React from "react";
 import GuessInput from "../GuessInput";
 import GuessRow from "../GuessRow";
+import Keyboard from "../Keyboard";
 import Notification from "../Notification";
 
 import { sample, range } from "../../utils";
 import { WORDS } from "../../data";
+import { ALPHABET } from "../../data";
+
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
+const defaultMappedAlphabet = Object.fromEntries(
+  ALPHABET.map((character) => [character, "unused"])
+);
+
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
 
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
+  const [mappedLetters, setMappedLetters] = React.useState(
+    defaultMappedAlphabet
+  );
   const [gameStatus, setGameStatus] = React.useState("ongoing");
 
   function handleProcessSubmit(guessInput) {
     const nextGuessCount = guesses.length + 1;
     handleSetGuesses(guessInput);
+    updateKeyboard(guessInput);
 
     if (guessInput === answer) {
       setGameStatus("won");
@@ -30,6 +41,16 @@ function Game() {
   function handleSetGuesses(guessInput) {
     const newGuesses = [...guesses, guessInput];
     setGuesses(newGuesses);
+  }
+
+  function updateKeyboard(guessInput) {
+    const newMappedLetters = { ...mappedLetters };
+
+    guessInput.split("").forEach((letter) => {
+      newMappedLetters[letter] = "used";
+    });
+
+    setMappedLetters(newMappedLetters);
   }
 
   return (
@@ -47,7 +68,7 @@ function Game() {
           guessCount={guesses.length}
         />
       )}
-
+      <Keyboard mappedLetters={mappedLetters} />
       <GuessInput
         handleProcessSubmit={handleProcessSubmit}
         isAllowedToGuess={gameStatus === "ongoing"}

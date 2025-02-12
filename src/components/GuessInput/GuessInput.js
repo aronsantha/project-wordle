@@ -4,7 +4,7 @@ function GuessInput({ handleProcessSubmit, isAllowedToGuess }) {
   const [guessInput, setGuessInput] = React.useState("");
   function handleSubmit(event) {
     event.preventDefault();
-    handleProcessSubmit(guessInput);
+    handleProcessSubmit(guessInput.toLowerCase());
     setGuessInput("");
   }
 
@@ -14,7 +14,7 @@ function GuessInput({ handleProcessSubmit, isAllowedToGuess }) {
       className="guess-input-wrapper"
       style={{
         transition: "opacity 0.3s linear",
-        opacity: !isAllowedToGuess ? 0.2 : 1,
+        opacity: !isAllowedToGuess ? 0 : 1,
       }}
     >
       <label htmlFor="guess-input">Enter guess:</label>
