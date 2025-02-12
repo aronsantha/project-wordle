@@ -1,9 +1,10 @@
 import React from "react";
 import GuessInput from "../GuessInput";
-import GuessResults from "../GuessResults";
+import GuessRow from "../GuessRow";
 
-import { sample } from "../../utils";
+import { sample, range } from "../../utils";
 import { WORDS } from "../../data";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -18,10 +19,20 @@ function Game() {
     setGuesses(newGuesses);
   }
 
+  let isAllowedToGuess = Boolean(guesses.length < NUM_OF_GUESSES_ALLOWED);
+
   return (
     <>
-      <GuessResults guesses={guesses} />
-      <GuessInput handleSetGuesses={handleSetGuesses} />
+      <div className="guess-results">
+        {range(NUM_OF_GUESSES_ALLOWED).map((index) => (
+          <GuessRow key={index} guess={guesses[index]} />
+        ))}
+      </div>
+
+      <GuessInput
+        handleSetGuesses={handleSetGuesses}
+        isAllowedToGuess={isAllowedToGuess}
+      />
     </>
   );
 }

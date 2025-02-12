@@ -1,6 +1,6 @@
 import React from "react";
 
-function GuessInput({ handleSetGuesses }) {
+function GuessInput({ handleSetGuesses, isAllowedToGuess }) {
   const [guessInput, setGuessInput] = React.useState("");
   function handleSubmit(event) {
     event.preventDefault();
@@ -10,9 +10,17 @@ function GuessInput({ handleSetGuesses }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="guess-input-wrapper">
+    <form
+      onSubmit={handleSubmit}
+      className="guess-input-wrapper"
+      style={{
+        transition: "opacity 0.3s linear",
+        opacity: !isAllowedToGuess ? 0.2 : 1,
+      }}
+    >
       <label htmlFor="guess-input">Enter guess:</label>
       <input
+        disabled={!isAllowedToGuess}
         className="text-uppercase"
         onChange={(event) => {
           setGuessInput(event.target.value);
