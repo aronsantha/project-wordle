@@ -6,6 +6,7 @@ import { checkGuess } from "../../game-helpers";
 
 function GuessRow({ guess, answer }) {
   const guessLetters = checkGuess(guess, answer) || range(5);
+  console.log(guessLetters);
 
   return (
     <p className="guess">
