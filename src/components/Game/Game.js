@@ -20,8 +20,6 @@ function Game() {
     const nextGuessCount = guesses.length + 1;
     handleSetGuesses(guessInput);
 
-    console.log(guessInput, answer, guessInput === answer);
-
     if (guessInput === answer) {
       setGameStatus("won");
     } else if (nextGuessCount < NUM_OF_GUESSES_ALLOWED) {

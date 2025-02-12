@@ -1,8 +1,6 @@
 import React from "react";
 
 function Notification({ gameStatus, guessCount, answer }) {
-  console.log(gameStatus);
-
   return (
     <>
       {gameStatus === "won" ? (
