@@ -27,20 +27,15 @@ function Game() {
   const [gameStatus, setGameStatus] = React.useState("ongoing");
 
   function handleProcessSubmit(guessInput) {
-    const nextGuessCount = guesses.length + 1;
-    handleSetGuesses(guessInput);
+    const newGuesses = [...guesses, guessInput];
+    setGuesses(newGuesses);
     updateKeyboard(guessInput);
 
     if (guessInput === answer) {
       setGameStatus("won");
-    } else if (nextGuessCount < NUM_OF_GUESSES_ALLOWED) {
+    } else if (newGuesses.length < NUM_OF_GUESSES_ALLOWED) {
       return;
     } else setGameStatus("lost");
-  }
-
-  function handleSetGuesses(guessInput) {
-    const newGuesses = [...guesses, guessInput];
-    setGuesses(newGuesses);
   }
 
   function updateKeyboard(guessInput) {

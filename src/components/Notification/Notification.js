@@ -5,7 +5,7 @@ function Notification({ gameStatus, guessCount, answer }) {
     <>
       {gameStatus === "won" ? (
         <div className="happy banner">
-          Congrats! You solved it in {guessCount} guesses.
+          Congrats! You solved it in {guessCount} guess(es).
         </div>
       ) : (
         <div className="sad banner">
